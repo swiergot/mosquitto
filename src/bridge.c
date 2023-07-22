@@ -84,6 +84,7 @@ int bridge__new(struct mosquitto__bridge *bridge)
 	if(new_context){
 		/* (possible from persistent db) */
 		mosquitto__free(local_id);
+		session_expiry__remove(new_context);
 	}else{
 		/* id wasn't found, so generate a new context */
 		new_context = context__init(INVALID_SOCKET);
